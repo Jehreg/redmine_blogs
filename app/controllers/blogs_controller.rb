@@ -4,6 +4,7 @@ class BlogsController < ApplicationController
   helper :attachments
   include AttachmentsHelper
 
+  skip_before_filter :check_if_login_required, :only => [:index, :show, :show_by_tag, :add_comment ]
   before_filter :find_blog, :except => [:new, :index, :preview, :show_by_tag, :get_tag_list]
   before_filter :find_user, :only => [:index]
   before_filter :authorize_global
